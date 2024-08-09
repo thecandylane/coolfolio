@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background:url(media/giphy.webp);
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-right: 600px;
+            margin-left: 600px;
+            background-color: rgb(179, 180, 245);
+
+        }
+        .hello{
+            background-color: rgb(4, 109, 9);
+            margin-left: 320px;
+            margin-right: 320px;
+        }
+        .hello2{
+            background-color: #d15705;
+            margin-left: 300px;
+            margin-right: 300px;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: fade 1s ease-in-out;
+        } */
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .project {
+            width: 200px;
+            height: 250px;
+            background-color: #3498db;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            border-radius: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+            will-change: transform;
+        }
+
+        .project img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .project h3 {
+            margin: 10px 0;
+        }
+
+        .project p {
+            font-size: 12px;
+        }
+
+        .project a {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to my website!</h1>
+    <p class="hello">Thanks for checking it out! I didn't feel like writing a million lines of css, so until I push the cool css changes, heres some of my projects!</p>
+    <p class="hello2">Who am I? Jack Schliewe first of all, and I am a student at LSU that found out C++ is way cooler than react (css actually), and is now switching over to cybersecurity because 'I get to hack things'. I love technology, music, and doomscrolling,
+        and would love to work on any technology related side project!
+    </p>
+    
+    <div class="container">
+            <!-- <div class="background" id="background"></div> -->
+        <!-- Project divs will be inserted here by JavaScript -->
+    </div>
+
+    <script>
+        const portfolioData = [
+            {
+                "image": "CandiboardImage",
+                "title": "Candiboard",
+                "description": "Platform that allows you to customize a personal advertising and affiliate marketing program for the products of your choice. Currently built using React and Flask, But I am remaking it with next.js for the commercializing platform I am considering.",
+                "url": "https://github.com/thecandylane/Candiboard-capstone"
+            },
+            {
+                "image": "Phase4ProjectImage",
+                "title": "Issue and Project Tracking Software",
+                "description": "Projecting managing application that works similar to Jira or Workfront. Built as a Team of 4 Bootcamp classmates, using React and Flask.",
+                "url": "https://github.com/thecandylane/P4-Project-Jack-ChrisC-Jacob-ChrisW"
+            },
+            {
+                "image": "MinesweeperImage",
+                "title": "Minesweeper CLI game",
+                "description": "Created a custom minesweeper game played in the terminal. Has a full backend for Users and highscores. Built with Python.",
+                "url": "https://github.com/thecandylane/phase3-Jack-Eshwar-cli-project"
+            },
+            {
+                "image": "InstagramMockImage",
+                "title": "ScrapBook",
+                "description": "Mock rudimentary instagram version created using React and json-server. No github contributions due to computer problems, only backseat coding.",
+                "url": "https://github.com/ianstrom/ScrapBook"
+            },
+            {
+                "image": "",
+                "title": "SeeSEC",
+                "description": "Site that fetches from an API and returns ~100,000 employees SEC Filings from ~8000 major Companies.",
+                "url": "https://github.com/ianstrom/See-SEC"
+            },
+            {
+                "image": "PongSSImage",
+                "title": "Pong",
+                "description": "Simple pong game I made with python, not sure how to make it playable in browser just yet",
+                "url": "https://www.instagram.com/thecandylane/"
+            },
+            {
+                "image": "nada",
+                "title": "SaferHydrocleaning",
+                "description": "In-progress website for my friend's powerwashing business",
+                "url": "https://www.saferhydrocleaning.com"
+            },
+            {
+                "image": "who",
+                "title": "ImJustABil",
+                "description": "Hackathon project built using OpenAI API. Created so that we could input large pdfs, such as a pending Bill, and have chatgpt locally search through it.",
+                "url": "https://github.com/thecandylane/Spotify-scraper",
+            },
+            {
+                "image": "SpotifyImage",
+                "title": "Spotify Scraper",
+                "description": "Scraper in python that takes all songs on a spotify playlist and download them as mp3s.",
+                "url": "https://github.com/thecandylane/Spotify-scraper"
+            },
+            {
+                "image": "RISC-V Disassembler",
+                "title": "RISV-V Disassembler",
+                "description": "Simple disassembler built in C++ that takes in a set of RISC-V instructions in binary and returns their human-readable mnemonic counterpart",
+                "url": "https://github.com/thecandylane/RISC-V_Disassembler"
+            }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector(".container");
+
+            // Function to create a project div
+            function createProjectDiv(project) {
+                const div = document.createElement("div");
+                div.classList.add("project");
+
+                if (project.image) {
+                    const img = document.createElement("img");
+                    img.src = project.image;
+                    div.appendChild(img);
+                }
+
+                const h3 = document.createElement("h3");
+                h3.textContent = project.title;
+                div.appendChild(h3);
+
+                const p = document.createElement("p");
+                p.textContent = project.description;
+                div.appendChild(p);
+
+                const a = document.createElement("a");
+                a.href = project.url;
+                a.textContent = "View Project";
+                div.appendChild(a);
+
+                // Set random position within the viewport
+                const maxX = window.innerWidth - 200;
+                const maxY = window.innerHeight - 250;
+                div.style.left = Math.random() * maxX + "px";
+                div.style.top = Math.random() * maxY + "px";
+
+                container.appendChild(div);
+            }
+
+            // Add all projects
+            portfolioData.forEach(createProjectDiv);
+
+            // Function to detect collision and adjust position
+            function detectCollision() {
+                const projects = document.querySelectorAll(".project");
+
+                projects.forEach((project1, i) => {
+                    projects.forEach((project2, j) => {
+                        if (i !== j) {
+                            const rect1 = project1.getBoundingClientRect();
+                            const rect2 = project2.getBoundingClientRect();
+
+                            if (
+                                rect1.left < rect2.right &&
+                                rect1.right > rect2.left &&
+                                rect1.top < rect2.bottom &&
+                                rect1.bottom > rect2.top
+                            ) {
+                                // Collision detected
+                                const moveX = (rect1.left - rect2.left) / 2;
+                                const moveY = (rect1.top - rect2.top) / 2;
+                                project1.style.left = Math.min(Math.max(parseFloat(project1.style.left) + moveX, 0), window.innerWidth - 200) + "px";
+                                project1.style.top = Math.min(Math.max(parseFloat(project1.style.top) + moveY, 0), window.innerHeight - 250) + "px";
+                                project2.style.left = Math.min(Math.max(parseFloat(project2.style.left) - moveX, 0), window.innerWidth - 200) + "px";
+                                project2.style.top = Math.min(Math.max(parseFloat(project2.style.top) - moveY, 0), window.innerHeight - 250) + "px";
+                            }
+                        }
+                    });
+                });
+            }
+
+            // Initial collision detection
+            detectCollision();
+
+            // Function to move projects away from mouse
+            function moveAwayFromMouse(e) {
+                const projects = document.querySelectorAll(".project");
+                projects.forEach((project) => {
+                    const rect = project.getBoundingClientRect();
+                    const distX = rect.left + rect.width / 2 - e.clientX;
+                    const distY = rect.top + rect.height / 2 - e.clientY;
+                    const distance = Math.sqrt(distX * distX + distY * distY);
+
+                    if (distance < 150) {
+                        const moveX = distX / distance * 10;
+                        const moveY = distY / distance * 10;
+                        let newLeft = parseFloat(project.style.left) + moveX;
+                        let newTop = parseFloat(project.style.top) + moveY;
+
+                        // Confine to viewport
+                        newLeft = Math.min(Math.max(newLeft, 0), window.innerWidth - 200);
+                        newTop = Math.min(Math.max(newTop, 0), window.innerHeight - 250);
+
+                        project.style.left = newLeft + "px";
+                        project.style.top = newTop + "px";
+                    }
+                });
+
+                detectCollision(); // Re-check for collisions after moving
+            }
+
+            document.addEventListener("mousemove", moveAwayFromMouse);
+        });
+
+    </script>
+
+</body>
+
+</html>
