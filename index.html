@@ -91,14 +91,17 @@
 
 <body>
     <h1>Welcome to my website!</h1>
-    <p class="hello">Thanks for checking it out! I didn't feel like writing a million lines of css, so until I push the cool css changes, heres some of my projects!</p>
-    <p class="hello2">Who am I? Jack Schliewe first of all, and I am a student at LSU that found out C++ is way cooler than react (css actually), and is now switching over to cybersecurity because 'I get to hack things'. I love technology, music, and doomscrolling,
+    <p class="hello">Thanks for checking it out! I didn't feel like writing a million lines of css, so until I push the cool css changes, heres some of my projects! (This also doubles as an attention 
+        span test).
+    </p>
+    <p class="hello2">Most people call me Jack Schliewe because it's my name, but i've never been too picky. I started LSU as a sophomore with some background in web development, but through community college I realized
+         C++ is way cooler than react (css actually), and am considering switching over to more cybersecurity focused study because 'I get to hack things'. I love technology, music, and doomscrolling,
         and would love to work on any technology related side project!
     </p>
     
     <div class="container">
             <!-- <div class="background" id="background"></div> -->
-        <!-- Project divs will be inserted here by JavaScript -->
+             <!-- Projects here -->
     </div>
 
     <script>
@@ -149,7 +152,7 @@
                 "image": "who",
                 "title": "ImJustABil",
                 "description": "Hackathon project built using OpenAI API. Created so that we could input large pdfs, such as a pending Bill, and have chatgpt locally search through it.",
-                "url": "https://github.com/thecandylane/Spotify-scraper",
+                "url": "https://github.com/thecandylane/ImJustABill",
             },
             {
                 "image": "SpotifyImage",
@@ -160,7 +163,7 @@
             {
                 "image": "RISC-V Disassembler",
                 "title": "RISC-V Disassembler",
-                "description": "Simple disassembler built in C++ that takes in a set of RISC-V instructions in binary and returns their human-readable mnemonic counterpart",
+                "description": "Very Rudimentary disassembler built in C++ that takes in a set of RISC-V instructions in binary and returns their human-readable mnemonic counterpart",
                 "url": "https://github.com/thecandylane/RISC-V_Disassembler"
             }
         ];
@@ -168,7 +171,6 @@
         document.addEventListener("DOMContentLoaded", () => {
             const container = document.querySelector(".container");
 
-            // Function to create a project div
             function createProjectDiv(project) {
                 const div = document.createElement("div");
                 div.classList.add("project");
@@ -192,7 +194,6 @@
                 a.textContent = "View Project";
                 div.appendChild(a);
 
-                // Set random position within the viewport
                 const maxX = window.innerWidth - 200;
                 const maxY = window.innerHeight - 250;
                 div.style.left = Math.random() * maxX + "px";
@@ -201,10 +202,8 @@
                 container.appendChild(div);
             }
 
-            // Add all projects
             portfolioData.forEach(createProjectDiv);
 
-            // Function to detect collision and adjust position
             function detectCollision() {
                 const projects = document.querySelectorAll(".project");
 
@@ -233,10 +232,8 @@
                 });
             }
 
-            // Initial collision detection
             detectCollision();
 
-            // Function to move projects away from mouse
             function moveAwayFromMouse(e) {
                 const projects = document.querySelectorAll(".project");
                 projects.forEach((project) => {
@@ -251,7 +248,6 @@
                         let newLeft = parseFloat(project.style.left) + moveX;
                         let newTop = parseFloat(project.style.top) + moveY;
 
-                        // Confine to viewport
                         newLeft = Math.min(Math.max(newLeft, 0), window.innerWidth - 200);
                         newTop = Math.min(Math.max(newTop, 0), window.innerHeight - 250);
 
@@ -260,7 +256,7 @@
                     }
                 });
 
-                detectCollision(); // Re-check for collisions after moving
+                detectCollision(); 
             }
 
             document.addEventListener("mousemove", moveAwayFromMouse);
